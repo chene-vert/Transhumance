@@ -3,7 +3,7 @@
 
 # Construit la liste des sites web possible à sauvgarder
 # c-a-d un repertoire contenant un fichier settings.conf
-LIST_SITE=( $(find "$(readlink -f ${0%/*})" -mindepth 1 -maxdepth 1 -type d | sort | sed 's@/settings.conf$@@' )  )
+LIST_SITE=( $(find "$(readlink -f ${0%/*})" -mindepth 2 -maxdepth 2 -type f -name "settings.conf" | sort  | sed 's@/settings.conf$@@' )  )
 
 # Propose à l'utilisateur la liste des sites
 ((i=0))
@@ -31,6 +31,7 @@ printf "\nLe site qui va être restauré est : ${ROOT_DIR##*/}\n\n"
 
 # Construit la liste des backup pour le site selectionné
 LIST_BACKUP=( $(find "${ROOT_DIR}" -mindepth 1 -maxdepth 1 -name "20*" -type d | sort -r )  )
+
 
 # Propose à l'utilisateur la liste des backup possibles
 ((i=0))
